@@ -98,7 +98,7 @@ jobs:
           name: Scan front-end
           command: |
             # Your code here
-            cd frontend && npm install && npm audit fix --audit-level=critical --force && npm audit --audit-level=critical
+            cd frontend && npm install && npm audit fix --audit-level=critical --force && npm audit fix --force && npm audit --audit-level=critical
       - save_cache:
           paths: [frontend/node_modules]
           key: frontend-scan
