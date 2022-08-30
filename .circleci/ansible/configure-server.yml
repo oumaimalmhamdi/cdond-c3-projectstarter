@@ -13,8 +13,6 @@
     - ansible_stdout_callback: yaml
 
   pre_tasks:
-    - add_ssh_keys:
-          fingerprints: ['eb:4c:68:b2:97:79:1d:07:91:0f:7b:cd:15:aa:11:8a']
     - name: "wait 600 seconds for target connection to become reachable/usable."
       # Your code here
       wait_for_connection:
