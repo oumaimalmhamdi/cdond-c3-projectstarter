@@ -100,7 +100,7 @@ jobs:
           name: Scan back-end
           command: |
              # Your code here
-             cd backend && npm install && npm audit fix --audit-level=critical --force && npm audit --audit-level=critical && npm audit fix
+             cd backend && npm install && npm audit fix --audit-level=critical --force && npm audit fix --force && npm audit --audit-level=critical
       - save_cache:
           paths: [backend/node_modules]
           key: backend-scan
