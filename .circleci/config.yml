@@ -221,7 +221,7 @@ jobs:
             sudo chown -R root .
             sudo npm install -g npm
             # Run and save the migration output
-            sudo npm run migrations > migrations_dump.txt
+            sudo npm run migrations
       - run:
           name: Send migration results to kvdb.io
           command: |
