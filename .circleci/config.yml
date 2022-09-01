@@ -242,7 +242,7 @@ jobs:
             then
               curl https://kvdb.io/5Ci6sFADuWKbH98yJZai6K/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
             fi
-      - destroy-environment
+
  
   deploy-frontend:
     docker:
