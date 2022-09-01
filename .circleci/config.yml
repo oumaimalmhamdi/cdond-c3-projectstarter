@@ -224,6 +224,8 @@ jobs:
           name: Install dependenciess
           command: |
             cd backend
+            npm install -g n
+            n stable
             npm install
       - run:
           name: Run migrations
