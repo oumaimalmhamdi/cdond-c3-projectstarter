@@ -1,0 +1,14 @@
+---
+- name: Copy folder into instance
+  synchronize:
+    src: ~/project/backend
+    dest: ~/project
+- name: Build backend
+  shell: |
+    cd ~/project/backend
+    npm install
+    npm run build
+- name: Start backend
+  shell: |
+    cd ~/project/backend
+    pm2 start npm --name backend -- start
