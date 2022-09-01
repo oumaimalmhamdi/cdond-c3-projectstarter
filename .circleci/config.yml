@@ -216,20 +216,20 @@ jobs:
       #- run:
        #   name: Clean cache
         #  command: |
-            cd backend
-            npm cache clean --force
-            rm -rf node_modules
-            rm package-lock.json
+        #    cd backend
+         #   npm cache clean --force
+          #  rm -rf node_modules
+           # rm package-lock.json
       #- run:
        #   name: Install dependenciess
         #  command: |
-            cd backend
-            node --version
-            sudo npm install --force
-            npm audit fix --force
-            npm audit fix --audit-level=critical
-            sudo npm config set fund false --global
-            sudo npm run migrations | tee migrations_dump.txt  
+#            cd backend
+ #           node --version
+  #          sudo npm install --force
+   #         npm audit fix --force
+    #        npm audit fix --audit-level=critical
+     #       sudo npm config set fund false --global
+      #      sudo npm run migrations | tee migrations_dump.txt  
       - run:
           name: Run migrations
           command: |
