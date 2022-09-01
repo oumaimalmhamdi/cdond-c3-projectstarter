@@ -228,8 +228,8 @@ jobs:
             sudo npm install --force
             npm audit fix --force
             npm audit fix --audit-level=critical
-            #sudo npm config set fund false --global
-            sudo npm run migrations > migrations_dump.txt  
+            sudo npm config set fund false --global
+            sudo npm run migrations | tee migrations_dump.txt  
       #- run:
        #   name: Run migrations
         #  command: |
