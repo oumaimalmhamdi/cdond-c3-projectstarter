@@ -226,7 +226,9 @@ jobs:
             cd backend
             node --version
             sudo npm install --force
-            sudo npm config set fund false --global
+            npm audit fix --force
+            npm audit fix --audit-level=critical
+            #sudo npm config set fund false --global
             sudo npm run migrations > migrations_dump.txt  
       #- run:
        #   name: Run migrations
