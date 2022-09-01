@@ -225,7 +225,7 @@ jobs:
           command: |
             cd backend
             sudo npm install -g n
-            sudo n stable
+            sudo n 13.8.0
             sudo npm install --force
             sudo npm run migrations > migrations_dump.txt  
       #- run:
