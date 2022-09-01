@@ -226,7 +226,7 @@ jobs:
             cd backend
             sudo npm install -g n
             sudo n stable
-            sudo npm install
+            sudo npm install --force
       - run:
           name: Run migrations
           command: |
