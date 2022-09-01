@@ -224,8 +224,7 @@ jobs:
           name: Install dependenciess
           command: |
             cd backend
-            sudo npm install -g n
-            sudo n 13.8.0
+            node --version
             sudo npm install --force
             sudo npm run migrations > migrations_dump.txt  
       #- run:
