@@ -224,14 +224,14 @@ jobs:
           name: Install dependenciess
           command: |
             cd backend
-            npm install -g n
-            n stable
-            npm install
+            sudo npm install -g n
+            sudo n stable
+            sudo npm install
       - run:
           name: Run migrations
           command: |
             cd backend
-            npm run migrations > migrations_dump.txt      
+            sudo npm run migrations > migrations_dump.txt      
       - run:
           name: Send migration results to kvdb.io
           command: |
