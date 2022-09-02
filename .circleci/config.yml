@@ -305,7 +305,7 @@ jobs:
   smoke-test:
     docker:
       # Lightweight Docker image 
-      - image: ubuntu:latest
+      - image: amazon/aws-cli
     steps:
       # Checkout code from git
       - checkout
@@ -314,7 +314,7 @@ jobs:
           command: |
             # your code here
             apt update
-            apt -y install python3-pip curl awscli
+            apt -y install python3-pip curl
       - run:
           name: Backend Smoke Test
           command: |
