@@ -314,7 +314,7 @@ jobs:
           command: |
             # your code here
             apt update
-            apt -y install python3-pip curl
+            apt -y install python3-pip curl awscli
       - run:
           name: Backend Smoke Test
           command: |
