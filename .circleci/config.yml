@@ -213,15 +213,26 @@ jobs:
           name: Install dependencies
           command: |
             sudo apt update -y
-            sudo apt install awscli -y  
+            sudo apt install awscli -y
+      - run:
+          npm install typescript
+      - run: npm --update install python3 npm
       - run:
           name: Run migrations
           command: |
+            # Your code here
+            # Successful output will have "has been executed successfully"
             cd backend
-            sudo chown -R root .
-            sudo npm install -g npm
+            npm run migrations > ./migrations.txt
+            cat migrations.txt      
+      #- run:
+       #   name: Run migrations
+        #  command: |
+         #   cd backend
+          #  sudo chown -R root .
+           # sudo npm install -g npm
             # Run and save the migration output
-            sudo npm run migrations > migrations_dump.txt
+            #sudo npm run migrations > migrations_dump.txt
       - run:
           name: Send migration results to kvdb.io
           command: |
