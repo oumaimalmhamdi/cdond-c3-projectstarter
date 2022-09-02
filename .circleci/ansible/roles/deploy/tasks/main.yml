@@ -1,0 +1,47 @@
+---
+- name: "update apt repo"
+  become: true
+  apt:
+    update_cache: yes
+
+- name: "upgrade apt packages"
+  become: true
+  apt:
+    upgrade: yes
+
+- name: "remove cache dependencies"
+  become: true
+  apt:
+    autoremove: yes
+
+- name: "install nodejs & npm"
+  become: true
+  apt:
+    name: ["nodejs", "npm"]
+    state: latest
+    update_cache: yes
+
+- name: "install pm2"
+  become: true
+  npm:
+    name: pm2
+    global: yes
+    production: yes
+    state: present
+
+- name: "Copy zipped artifact into EC2 instance" 
+  become: true
+  copy:
+    src: ~/project/artifact.tar.gz
+    dest: /home/ubuntu/artifact.tar.gz
+
+
+- name: "Start app"
+  become: true
+  shell: |
+    cd /home/ubuntu
+    tar xzvf artifact.tar.gz
+    npm install
+    npm run build
+    pm2 stop all
+    pm2 start npm -- start
