@@ -280,14 +280,15 @@ jobs:
 
   deploy-backend:
     docker:
-      - image: python:3.7-alpine3.11
+      - image: python:3.8-slim
     steps:
       - checkout
       - run:
           name: Install dependencies
           command: |
-            apk add --update curl nodejs npm ansible zip
-            pip install awscli
+            #apk add --update curl nodejs npm ansible zip
+            #pip install awscli
+            apt -y update && apt -y install openssh-client curl nodejs npm zip && pip install ansible awscli
       - add_ssh_keys:
           fingerprints: ["eb:4c:68:b2:97:79:1d:07:91:0f:7b:cd:15:aa:11:8a"]
       - attach_workspace:
