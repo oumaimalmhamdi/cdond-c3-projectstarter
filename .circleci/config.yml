@@ -267,7 +267,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            yum install -y gcc-c++ make && curl -sL https://rpm.nodesource.com/setup_14.x | bash - && yum install -y nodejs
+            yumo install -y gcc-c++ make && curl -sL https://rpm.nodesource.com/setup_14.x | bash - && yum install -y nodejs
       - run:
           name: Get backend url
           command: |
