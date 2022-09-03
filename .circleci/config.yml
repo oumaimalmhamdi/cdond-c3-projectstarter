@@ -184,7 +184,8 @@ jobs:
           paths:
             - project/.circleci/ansible/inventory.txt
       # Here's where you will add some code to rollback on failure
-      - destroy-environment
+      - destroy-environment:
+          workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"
 
   configure-infrastructure:
     docker:
@@ -217,8 +218,8 @@ jobs:
             cat backend/.env
             cp ./backend/.env .circleci/ansible/roles/configure-server/files
             cd .circleci/ansible && ansible-playbook -i inventory.txt configure-server.yml
-      - destroy-environment
-         
+      - destroy-environment:
+         workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"
   run-migrations:
     docker:
       - image: circleci/node:13.8.0
@@ -251,7 +252,8 @@ jobs:
             then
               curl https://kvdb.io/5Ci6sFADuWKbH98yJZai6K/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
             fi
-      - destroy-environment      
+      - destroy-environment:
+          workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"
 
 
   deploy-frontend:
@@ -285,7 +287,8 @@ jobs:
             npm run build
             tar -czvf artifact-"${CIRCLE_WORKFLOW_ID:0:7}".tar.gz dist
             aws s3 cp dist s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7} --recursive
-      - destroy-environment    
+      - destroy-environment:
+          workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"
       - revert-migrations:
           workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"
 
@@ -334,7 +337,8 @@ jobs:
             cd .circleci/ansible
             cat inventory.txt
             ansible-playbook -i inventory.txt deploy-backend.yml
-      - destroy-environment
+      - destroy-environment:
+          workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"
       - revert-migrations:
           workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}" 
 
@@ -384,10 +388,11 @@ jobs:
             #  return 1
             #fi
             if curl -s ${URL}; then exit 0; else exit 1; fi
-      # Here's where you will add some code to rollback on failure  
-     # - destroy-environment    
-      #- revert-migrations:
-       #   workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"
+       Here's where you will add some code to rollback on failure  
+      - destroy-environment:
+          workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"
+      - revert-migrations:
+          workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"
 
 
 workflows:
