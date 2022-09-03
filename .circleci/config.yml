@@ -267,7 +267,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            yumo install -y gcc-c++ make && curl -sL https://rpm.nodesource.com/setup_14.x | bash - && yum install -y nodejs
+            yum install -y gcc-c++ make && curl -sL https://rpm.nodesource.com/setup_14.x | bash - && yum install -y nodejs
       - run:
           name: Get backend url
           command: |
@@ -381,13 +381,13 @@ jobs:
             # your code here
             export URL="http://udapeople-${CIRCLE_WORKFLOW_ID:0:7}.s3-website-us-east-1.amazonaws.com/#/employees"
             echo ${URL}
-            #if curl -s ${URL} | grep "Welcome"
-            #then  
-            #  return 0
-            #else
-            #  return 1
-            #fi
-            if curl -s ${URL}; then exit 0; else exit 1; fi
+            if curl -s ${URL} | grep "Welcome"
+            then  
+              return 0
+            else
+              return 1
+            fi
+            #if curl -s ${URL}; then exit 0; else exit 1; fi
       # Here's where you will add some code to rollback on failure  
       - destroy-environment:
           workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"
