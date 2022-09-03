@@ -354,8 +354,8 @@ jobs:
           name: Install dependencies
           command: |
             # your code here
-            yum update
-            yum install curl
+            echo y | yum update
+            yum -y install curl
             yum -y install python3
             yum -y install python3-pip
       - run:
